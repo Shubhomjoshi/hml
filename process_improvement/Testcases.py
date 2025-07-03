@@ -1,5 +1,4 @@
 import re
-import sys
 
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
@@ -88,6 +87,6 @@ if __name__ == "__main__":
 
     sheet_name = "test"
     sheet_id = "1tKx4luYE-NIzs8hkIEk4urzulvsVRMcGCmCaQLlPv1E"
-    creds_file = "eighth-etching-464505-i6-e7b5c40d685c.json"
+    creds_file = "eighth-etching-464505-i6-012aa8d538b2.json"
 
     process_input(prompt, sheet_name, sheet_id, creds_file)
