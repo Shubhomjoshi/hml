@@ -29,10 +29,14 @@ jobs:
                --html=report.html \
                --self-contained-html
 
-    - name: Deploy report.html to GitHub Pages
+    - name: Move report.html into report/index.html for GitHub Pages
+      run: |
+        mkdir -p report
+        mv report.html report/index.html
+
+    - name: Deploy report folder to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_branch: gh-pages
-        publish_dir: ./
-        destination_dir: report
+        publish_dir: ./report
