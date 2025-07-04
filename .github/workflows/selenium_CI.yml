@@ -34,6 +34,8 @@ jobs:
         path: report.html
 
     - name: Upload report to Slack
+      env:
+        SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
       run: |
         curl -F file=@report.html \
              -F "initial_comment=Selenium Test Report for $(date)" \
