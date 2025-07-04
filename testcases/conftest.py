@@ -6,8 +6,9 @@ from allure_commons.types import AttachmentType
 from selenium import webdriver
 
 # Optional to import
-from selenium.webdriver.support.wait import WebDriverWait
+import os
 from utilities.readconfig import ReadConfigData
+from selenium.webdriver.chrome.options import Options
 
 
 @pytest.fixture(scope="class")
@@ -16,6 +17,21 @@ def setup_and_teardown_class(request):
     environment = request.config.getoption("--env")
     if browser == 'chrome':
         driver = webdriver.Chrome()
+
+        # For running in headless mode
+        options = Options()
+        if os.getenv("GITHUB_ACTIONS") == "true":
+            options.add_argument("--headless=new")
+            options.add_argument("--no-sandbox")
+            options.add_argument("--disable-dev-shm-usage")
+            options.add_argument("--disable-gpu")
+            options.add_argument("--window-size=1920,1080")
+        else:
+            options.add_argument("--start-maximized")
+
+        driver = webdriver.Chrome(options=options)
+        # Ends here
+
     elif browser == 'firefox':
         driver = webdriver.Firefox()
     else:
