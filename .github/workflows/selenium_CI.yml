@@ -28,7 +28,7 @@ jobs:
         pytest testcases/test_billing_dashboard.py --html=report.html --self-contained-html
 
     - name: Upload HTML report artifact (optional)
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: selenium-report
         path: report.html
