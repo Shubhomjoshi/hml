@@ -16,7 +16,7 @@ def setup_and_teardown_class(request):
     browser = request.config.getoption("--browser")
     environment = request.config.getoption("--env")
     if browser == 'chrome':
-        driver = webdriver.Chrome()
+       # driver = webdriver.Chrome()
 
         # For running in headless mode
         options = Options()
