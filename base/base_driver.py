@@ -41,7 +41,7 @@ class BaseDriver:
         self.driver.switch_to.window(handles[0])
         # self.wait_for_page_to_be_ready()
         # self.wait_until_element_is_visible(self.IMG_MAIN_LOGO)
-        time.sleep(40)
+        # time.sleep(40)
         self.verify_single_text(self.T_EPM_DASHBOARD, "Dashboard")
 
     def wait_for_page_to_be_ready(self, timeout=30):
