@@ -38,6 +38,7 @@ class BaseDriver:
         self.wait_until_page_contains_element(self.B_SIGN_IN).click()
         self.wait_until_page_contains_element(self.B_NO).click()
         self.driver.switch_to.window(handles[0])
+        self.wait_for_page_to_be_ready()
         self.wait_until_element_is_visible(self.IMG_MAIN_LOGO)
 
     def wait_for_page_to_be_ready(self, timeout=30):
