@@ -33,16 +33,17 @@ jobs:
         name: selenium-report
         path: report.html
 
-#    - name: Upload report to Slack
-#      env:
-#        SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
-#      run: |
-#        curl -F file=@report.html \
-#             -F "initial_comment=Selenium Test Report for $(date)" \
-#             -F channels=hml_automation \
-#             -H "Authorization: Bearer $SLACK_BOT_TOKEN" \
-#             https://slack.com/api/files.upload
+    - name: Move report.html into report/index.html
+      run: |
+        mkdir -p report
+        mv report.html report/index.html
 
+    - name: Deploy report to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_branch: gh-pages
+        publish_dir: ./report
 
     - name: Notify Slack
       env:
