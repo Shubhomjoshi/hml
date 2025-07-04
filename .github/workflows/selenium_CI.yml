@@ -38,5 +38,5 @@ jobs:
         curl -F file=@report.html \
              -F "initial_comment=Selenium Test Report for $(date)" \
              -F channels=hml_automation \
-             -H "Authorization: Bearer ${{ secrets.SLACK_BOT_TOKEN }}" \
+             -H "Authorization: Bearer $SLACK_BOT_TOKEN" \
              https://slack.com/api/files.upload
