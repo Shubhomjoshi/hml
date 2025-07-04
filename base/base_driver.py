@@ -22,6 +22,7 @@ class BaseDriver:
     B_SIGN_IN = By.XPATH, "//input[@value='Sign in']"
     B_NO = By.XPATH, "//input[@value='No']"
     IMG_MAIN_LOGO = By.XPATH, "//img[@class='desktop-dark']"
+    T_EPM_DASHBOARD = By.XPATH, "//h5[contains(text(), 'Dashboard')]"
 
     def login_into_application(self):
         """Log into connect app and wait till logo appear"""
@@ -38,8 +39,10 @@ class BaseDriver:
         self.wait_until_page_contains_element(self.B_SIGN_IN).click()
         self.wait_until_page_contains_element(self.B_NO).click()
         self.driver.switch_to.window(handles[0])
-        self.wait_for_page_to_be_ready()
-        self.wait_until_element_is_visible(self.IMG_MAIN_LOGO)
+        # self.wait_for_page_to_be_ready()
+        # self.wait_until_element_is_visible(self.IMG_MAIN_LOGO)
+        time.sleep(40)
+        self.verify_single_text(self.T_EPM_DASHBOARD, "Dashboard")
 
     def wait_for_page_to_be_ready(self, timeout=30):
         """Waits until the document.readyState is 'complete'."""
