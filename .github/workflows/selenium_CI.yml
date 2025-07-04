@@ -54,5 +54,5 @@ jobs:
           -H "Content-Type: application/json" \
           -d '{
                 "channel": "hml_automation",
-                "text": "✅ Selenium Test Report: https://Shubhomjoshi.github.io/hml/report/report.html"
+                "text": "✅ Selenium Test Report: https://Shubhomjoshi.github.io/hml/index.html"
               }'
