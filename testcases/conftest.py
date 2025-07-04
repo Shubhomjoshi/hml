@@ -7,7 +7,7 @@ from selenium import webdriver
 
 # Optional to import
 from selenium.webdriver.support.wait import WebDriverWait
-from hml.utilities.readconfig import ReadConfigData
+from utilities.readconfig import ReadConfigData
 
 
 @pytest.fixture(scope="class")

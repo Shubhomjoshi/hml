@@ -5,7 +5,7 @@ from base.base_driver import BaseDriver
 from selenium.webdriver.common.keys import Keys
 
 
-class ResourcesBillingDashboard(BaseDriver):
+class OnboardingResource(BaseDriver):
     def __init__(self, driver):
         super().__init__(driver)
         self.driver = driver
