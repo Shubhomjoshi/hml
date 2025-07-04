@@ -40,7 +40,7 @@ def setup_and_teardown_class(request):
     if environment == 'stage':
         base_url = config.get_config_data('Environment URL', 'Stage')
     elif environment == 'prod':
-        base_url = config.get_config_data('Environment URL', 'Prod')
+        base_url = config.get_config_data('Environment URL', 'Production')
     else:
         raise ValueError(f"Environment '{environment}' is not supported. Use 'stage' or 'prod'.")
     driver.get(base_url)
