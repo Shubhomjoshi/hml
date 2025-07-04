@@ -16,7 +16,7 @@ def setup_and_teardown_class(request):
     browser = request.config.getoption("--browser")
     environment = request.config.getoption("--env")
     if browser == 'chrome':
-       # driver = webdriver.Chrome()
+        # driver = webdriver.Chrome()
 
         # For running in headless mode
         options = Options()
@@ -57,6 +57,7 @@ def setup_and_teardown_class(request):
 def pytest_addoption(parser):
     parser.addoption("--browser", default="chrome", help="Browser option: Chrome or firefox")
     parser.addoption("--env", default="stage", help="Environment: stage or prod")
+
 
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)
 def pytest_runtest_makereport(item, call):

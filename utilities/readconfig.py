@@ -1,5 +1,8 @@
 import configparser
-config_path = "..\\configfiles\\config.ini"
+import os
+
+config_path = os.path.join(os.path.dirname(__file__), '..', 'configfiles', 'config.ini')
+config_path = os.path.abspath(config_path)  # Get absolute path
 
 
 class ReadConfigData:
