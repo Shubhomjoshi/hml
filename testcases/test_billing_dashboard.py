@@ -3,11 +3,11 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 import pytest
 
-from hml.pages.page_billing_dashboard import ResourcesBillingDashboard
-from hml.pages.page_onboarding import OnboardingResource
-from hml.utilities.readconfig import ReadConfigData
-from hml.utilities.XLutils import Excel
-from hml.utilities.customlogger import LoggerDemo
+from pages.page_billing_dashboard import ResourcesBillingDashboard
+from pages.page_onboarding import OnboardingResource
+from utilities.readconfig import ReadConfigData
+from utilities.XLutils import Excel
+from utilities.customlogger import LoggerDemo
 
 
 @pytest.mark.usefixtures('setup_and_teardown_class')
@@ -19,6 +19,6 @@ class TestBillingDashboard:
         self.EX = Excel()
 
     def test_billing_menu_default_selection(self):
+        """Verify Billing menu renders correctly with default selection on Billing Dashboard"""
         # self.PO.wait_until_page_contains_element(self.PO.L_SIGN_UP).click()
         self.BD.login_into_application()
-        time.sleep(1)
