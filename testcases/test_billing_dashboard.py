@@ -19,6 +19,6 @@ class TestBillingDashboard:
         self.EX = Excel()
 
     def test_billing_menu_default_selection(self):
-        """Verify Billzng menu renders correctly with default selection on Billing Dashboard"""
+        """Verify Billing menu renders correctly with default selection on Billing Dashboard"""
         # self.PO.wait_until_page_contains_element(self.PO.L_SIGN_UP).click()
         self.BD.login_into_application()
