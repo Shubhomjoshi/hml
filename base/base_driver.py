@@ -81,3 +81,10 @@ class BaseDriver:
         """It runs the loop for adding multiple text from dictionary into textbox."""
         for key, value in dictionary.items():
             self.fill_single_data_in_textboxes(key, value)
+
+    def verify_url_contains(self, expected_substring):
+        """Verifies that the current URL contains the expected substring (case-insensitive)."""
+        current_url = self.driver.current_url
+        print(f"🔗 Current URL: {current_url}")  # Optional: useful for debugging
+        assert expected_substring.lower() in current_url.lower(), \
+            f"Expected '{expected_substring}' to be part of the URL, but got '{current_url}'"
