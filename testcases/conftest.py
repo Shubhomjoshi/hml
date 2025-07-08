@@ -16,20 +16,20 @@ def setup_and_teardown_class(request):
     browser = request.config.getoption("--browser")
     environment = request.config.getoption("--env")
     if browser == 'chrome':
-        # driver = webdriver.Chrome()
+         driver = webdriver.Chrome()
 
-        # For running in headless mode
-        options = Options()
-        if os.getenv("GITHUB_ACTIONS") == "true":
-            options.add_argument("--headless=new")
-            options.add_argument("--no-sandbox")
-            options.add_argument("--disable-dev-shm-usage")
-            options.add_argument("--disable-gpu")
-            options.add_argument("--window-size=1920,1080")
-        else:
-            options.add_argument("--start-maximized")
-
-        driver = webdriver.Chrome(options=options)
+        # # For running in headless mode
+        # options = Options()
+        # if os.getenv("GITHUB_ACTIONS") == "true":
+        #     options.add_argument("--headless=new")
+        #     options.add_argument("--no-sandbox")
+        #     options.add_argument("--disable-dev-shm-usage")
+        #     options.add_argument("--disable-gpu")
+        #     options.add_argument("--window-size=1920,1080")
+        # else:
+        #     options.add_argument("--start-maximized")
+        #
+        # driver = webdriver.Chrome(options=options)
         # Ends here
 
     elif browser == 'firefox':
