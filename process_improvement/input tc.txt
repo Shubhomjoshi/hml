@@ -1,70 +1,114 @@
-Type: Functional
-Severity: Major
+Type: Functional + UI + Navigation
+Severity: Critical
 Priority: High
 Behaviour: Positive
-Title: Verify full widget removal, save, refresh and restore functionality in Customize Dashboard
+Title: Validate Document Tag Modal Functionality, Pagination Logic, and Load Redirection
 Description:
-Automation test name: test_remove_all_widgets_save_refresh_restore_in_customize_dashboard()
-Verify that removing all widgets shows an instructional message, saving keeps the message, refreshing restores all widgets, and saving after refresh retains restored state.
+Automation test name: test_document_tag_modal_pagination_and_redirection()
+This test validates the behavior of modals triggered from Document Tag widget under Billing Dashboard, verifying the modal layout, pagination behavior, redirection to load detail, and tag presence. The process is repeated for each tag under the Document Tags widget.
 
 Pre-condition:
-User is on the Billing Dashboard with Load Tags and Document Tags widgets shown under Added Widgets, and Customize Dashboard is opened.
+
+User is already logged into the application and is on the Billing Dashboard.
+
+Document Tags widget is visible and contains tags with varied counts (0, <10, >10).
 
 Post-condition:
-Widgets can be removed, saved, instructional text is displayed, and restored via refresh.
+
+Modal, pagination, and redirection should behave correctly for each document tag.
 
 Steps and Expected Result Mapping:
+Confirm that the Billing Dashboard is loaded and visible. [ER: 1]
 
-Ensure user is on Billing Dashboard and click on Customize Dashboard. [ER: 1]
+Click on a document tag from the Document Tags widget. [ER: 2]
 
-Click delete button on Load Tags widget. [ER: 2]
+A modal should open with the tag name as the label at the top. [ER: 3]
 
-Click delete button on Document Tags widget. [ER: 3]
+Table inside modal should have two columns: Load and Description. [ER: 4]
 
-Verify that both widgets are removed and a message is shown: "Please Customize the Dashboard and drag and drop widgets to view your data". [ER: 4]
+Click on the cross button, modal should close. [ER: 5]
 
-Click on Save Dashboard button. [ER: 5]
+Click on the same tag again, the modal should reopen correctly. [ER: 6]
 
-Ensure the same instructional message persists after save. [ER: 6]
+If tag count = 0, “No data available” text should be shown. [ER: 7]
 
-Click on Customize Dashboard again. [ER: 7]
+If tag count > 0 and ≤ 10:
+  - No pagination should be visible.
+  - Row count should match the actual count. [ER: 8]
 
-Click on Refresh button. [ER: 8]
+If tag count > 10:
+  - Pagination should be visible.
+  - Page 1 should be selected by default. [ER: 9]
+  - Prev arrow should be disabled.
+  - Click Next, 2nd page should load.
+  - Click Prev, page 1 should reappear. [ER: 10]
+  - On last page, Next arrow should be disabled.
+  - Total pages should be LP = (count // 10) + (1 if count % 10 > 0 else 0). [ER: 11]
 
-Verify that both Load Tags and Document Tags widgets reappear under Added Widgets, and Available Widgets shows "No Cards Available". [ER: 9]
+Click on the first Load number (if count > 0). [ER: 12]
 
-Click on Save Dashboard again. [ER: 10]
+User should be redirected to Load Details Page of selected load. [ER: 13]
 
-Verify that both widgets remain visible and placed under Added Widgets. [ER: 11]
+Verify that the same tag is visible under the load. [ER: 14]
+
+Click on the Back button. User should return to Billing Dashboard. [ER: 15]
+
+Repeat the above steps for each tag in the Document Tags widget. [ER: 16]
 
 Expected Results:
+Billing Dashboard loads correctly.
 
-Billing Dashboard is opened and Customize Dashboard panel is shown.
+Modal opens when a document tag is clicked.
 
-Load Tags widget is deleted and moved to Available Widgets.
+Modal shows correct tag name in the label.
 
-Document Tags widget is deleted and moved to Available Widgets.
+Table columns = Load and Description.
 
-Text "Please Customize the Dashboard and drag and drop widgets to view your data" is displayed.
+Modal closes with cross button.
 
-Save Dashboard button is clickable.
+Modal reopens successfully.
 
-Instructional text remains after saving.
+"No data available" shown for tag count = 0.
 
-Customize Dashboard is reopened for refreshing.
+For count ≤ 10: correct rows shown, no pagination.
 
-Refresh button triggers reloading of default widgets.
+For count > 10: pagination shows, default on page 1.
 
-Load Tags and Document Tags are back in Added Widgets, and Available Widgets shows "No Cards Available".
+Pagination navigates correctly between pages.
 
-Save Dashboard commits restored layout.
+Last page disables Next button. Page count is accurate.
 
-Restored widgets remain visible and functional after save.
+Clicking load number redirects correctly.
+
+Load details page opens for correct load.
+
+Selected tag is present on load details page.
+
+User returns to Billing Dashboard after clicking back.
+
+All document tags behave consistently.
 
 Test Data:
 
-Username: qa_user@example.com
+Document Tags:
 
-Password: Test@1234
+Pending Customer Approval
+
+Pending Internal Approval
+
+Submitted to HML
+
+Routed to Imaging
+
+Imaging Exception
+
+Driver Notification Sent
+
+In Good Order
+
+Tag counts: mix of 0, ≤10, >10
+
+Valid Load IDs with mapped tags
 
 Status: To Do
+
